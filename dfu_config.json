@@ -1,5 +1,6 @@
 {
   "fw_version": "10",
   "kernel_version": "10",
-  "dfu_version": "10"
+  "dfu_version": "10",
+  "fota_status": "default"
 }
