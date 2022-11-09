@@ -1,6 +1,6 @@
 {
-  "fw_version": "0100",
-  "fw_bank": "1",
-  "dfu_version": "10",
+  "fw_version": 100,
+  "fw_bank": 1,
+  "dfu_version": 10,
   "fota_status": "default"
 }
