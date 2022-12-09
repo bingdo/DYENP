@@ -2,5 +2,5 @@
   "fw_version": 202,
   "kernel_version": 10,
   "dfu_version": 10,
-  "fota_status": "default"
+  "fota_status": "Idle"
 }
