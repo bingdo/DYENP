@@ -2,5 +2,6 @@
   "fw_version": 202,
   "kernel_version": 10,
   "dfu_version": 10,
+  "dserver_ip": "192.30.255.112",
   "fota_status": "Idle"
 }
