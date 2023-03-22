@@ -3,5 +3,6 @@
   "kernel_version": 10,
   "dfu_version": 10,
   "dserver_ip": "192.30.255.112",
+  "fw_filename": "DYENP_dfu_fwupdate.txt",
   "fota_status": "Idle"
 }
