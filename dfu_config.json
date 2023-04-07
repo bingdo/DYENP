@@ -1,5 +1,5 @@
 {
-  "fw_version": 202,
+  "fw_version": 200,
   "kernel_version": 10,
   "dfu_version": 10,
   "dserver_ip": "192.30.255.112",
