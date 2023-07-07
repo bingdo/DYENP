@@ -2,6 +2,7 @@
   "fw_version": 302,
   "kernel_version": 10,
   "dfu_version": 10,
+  "ocppclient_update": "yes",
   "dserver_ip": "140.82.112.4",
   "fw_filename": "DYENP_dfu_fwupdate.txt",
   "fota_status": "Idle"
