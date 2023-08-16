@@ -104,6 +104,45 @@ fi
 chmod 666 $JSON_FILE
 chmod 755 $MODBUS_FILE
 $WORK_DIR/$MODBUS_FILE $MODBUS_PATH $WORK_DIR | tee -a $WORK_DIR/dfu_3.log
+OCPPCLIENT_UPDATE=$(jq -r .ocppclient_update $WORK_DIR/$JSON_FILE)
+OCPPCLIENT_NAME=$(jq -r .ocppclient_name $WORK_DIR/$JSON_FILE)
+SCRIPT_UPDATE=$(jq -r .script_update $WORK_DIR/$JSON_FILE)
+SCRIPT_NAME=$(jq -r .script_name $WORK_DIR/$JSON_FILE)
+if [[ $OCPPCLIENT_UPDATE == "yes" ]] || [[ $SCRIPT_UPDATE == "yes" ]]; then
+	jq '.fota_status = "Installing"' $JSON_FILE > tmp.json && mv -f tmp.json $JSON_FILE
+	if [ -e $OCPPCLIENT_NAME".1" ]; then
+		mv -f $OCPPCLIENT_NAME".1" $OCPPCLIENT_NAME
+	fi
+	if [ -e $OCPPCLIENT_NAME".1" ]; then
+		rm -f $OCPPCLIENT_NAME".1"
+	fi
+	if [ -e $OCPPCLIENT_NAME ]; then
+		unzip -o $OCPPCLIENT_NAME -d ./python
+		echo $OCPPCLIENT_UPDATE
+		echo $OCPPCLIENT_NAME
+		sudo rm -rf $OCPPCLIENT_NAME
+	fi
+	if [ -e $SCRIPT_NAME".1" ]; then
+		mv -f $SCRIPT_NAME".1" $SCRIPT_NAME
+	fi
+	if [ -e $OCPPCLIENT_NAME".1" ]; then
+		rm -f $OCPPCLIENT_NAME".1"
+	fi
+	if [ -e $SCRIPT_NAME ]; then
+		tar -xvf $SCRIPT_NAME -C $WORK_DIR
+		echo $SCRIPT_UPDATE
+		echo $SCRIPT_NAME
+		sudo rm -rf $SCRIPT_NAME
+	fi
+	jq '.fota_status = "Installed"' $JSON_FILE > tmp.json && mv -f tmp.json $JSON_FILE
+	date=$(date "+%Y%m%d%H%M%S")
+	echo "$date dfu process is done" | tee -a $WORK_DIR/dfu_3.log
+	cat dfu_1.log dfu_2.log dfu_3.log > dfu_$date.log
+	rm -f dfu_1.log dfu_2.log dfu_3.log
+	#echo "Reboot"
+	#sudo init 6
+	exit 0
+fi
 sleep 1
 
 gpio -g write $BOOT_PIN 0 ; gpio -g write $RESET_PIN 0 ; sleep 1 ; gpio -g write $RESET_PIN 1
