@@ -1,5 +1,6 @@
 #!/usr/bin/bash
-WORK_DIR="/home/cb"
+#WORK_DIR="/home/cb"
+WORK_DIR="/usr/local/apps/fw_upgrade_utils"
 SERIAL_PATH="/dev/ttyUSB0"
 MODBUS_PATH="/dev/ttyUSB1"
 BOOT_PIN=26
